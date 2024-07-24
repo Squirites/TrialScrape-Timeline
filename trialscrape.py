@@ -1,11 +1,5 @@
 import requests
 import pandas as pd
-import json
-import urllib, json
-from collections import ChainMap
-from datetime import date
-
-nct_id = "NCT06243198"
 
 class TrialScrape:
 
@@ -18,12 +12,11 @@ class TrialScrape:
         # Send the request to the API
         response = requests.get(base_url, headers=headers)
         if response.status_code == 200:
-            # Parse the response based on the requested format
+           
             if json_format:
                 try:
                     self.data = response.json()
 
-                    # print(f"Response JSON: {self.data}")
                 except ValueError as e:
                     print(f"JSON decode error: {e}")
                     return None
@@ -99,8 +92,8 @@ class TrialScrape:
         return arms
 
 
-df = pd.read_excel(r"C:\Users\AdamBadrideen\OneDrive - Cambridge Healthcare Research\New folder\DupixentDerm\ADCoreTrials.xlsx")
-# df = pd.read_excel(r"C:\Users\AdamBadrideen\OneDrive - Cambridge Healthcare Research\New folder\DupixentDerm\LCMCoreTrials.xlsx")
+df = pd.read_excel(r"[SOURCE EXCEL SET UP IN THE FORMAT AS OUTLINED IN README].xlsx")
+
 
 trials = df.to_dict()
 print(trials)
@@ -120,11 +113,11 @@ for i in range(len(trials["Registry Code"])):
             except:
                 pass
 
-            # try:
-            #     trials["Name"][i] = ts.getName()
-            #
-            # except:
-            #     pass
+            try:
+                trials["Name"][i] = ts.getName()
+            
+            except:
+                pass
 
             try:
                 trials["PCD"][i] = ts.getPCD()
@@ -188,10 +181,10 @@ for i in range(len(trials["Registry Code"])):
             except:
                 pass
 
-            # try:
-            #         trials["Indication"][i] = ts.getIndication()
-            # except:
-            #     continue
+            try:
+                    trials["Indication"][i] = ts.getIndication()
+            except:
+                continue
 
             try:
                 trials['Setting'][i] = ts.getSetting()
@@ -203,10 +196,10 @@ for i in range(len(trials["Registry Code"])):
             except:
                 pass
 
-            # try:
-            #     trials["Sponsor"][i] = ts.getSponsor()
-            # except:
-            #     continue
+            try:
+                trials["Sponsor"][i] = ts.getSponsor()
+            except:
+                continue
 
     except:
         continue
@@ -215,4 +208,4 @@ for i in range(len(trials["Registry Code"])):
 
 scrapedData = pd.DataFrame.from_dict(trials)
 
-scrapedData.to_excel(r"C:\Users\AdamBadrideen\OneDrive - Cambridge Healthcare Research\New folder\DupixentDerm\ADCoreTrials.xlsx", index = False)
+scrapedData.to_excel(r"[SOURCE EXCEL SET UP IN THE FORMAT AS OUTLINED IN README].xlsx", index = False)
