@@ -3,6 +3,7 @@ The code provided here scrapes information from ClinicalTrials.gov using the Cli
 Instructions:
 
 1. Download the template Excel, and population Registry Code column with relevant NCT trials for scraping.
+   
    Only trials with an NCT-code can be automatically scraped. For a trial with an NCT code, ensure that 'Yes' is in the respective row of the 'IncludeScrape' column. For trials without an NCT number, information can be          included manually, but you need to ensure that the following columns are not empty / null (below). For manually inputted trials, leave the 'IncludeScrape' column blank.
 
 3. Scrape trial information using trialscrape.py in Trial Scrape folder
