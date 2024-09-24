@@ -8,8 +8,8 @@ Instructions:
 
 3. Ensure that for each row the following columns are not empty / null:
 
-  Registry Code;
-  Name;
+      Registry Code;
+      Name;
   Therapy;
   Sponsor;
   RoA;
